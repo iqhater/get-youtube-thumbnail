@@ -9,12 +9,12 @@
 </div>
 <hr>
 
-By default, get_youtube_thumbnail gets a max resolution image, if image has been not found, get_youtube_thumbnail try to getting a high resolution image.
+By default, get-youtube-thumbnail gets a max resolution image, if image has been not found, get-youtube-thumbnail try to getting a high resolution image.
 
 
 ## How To Install
 
-There are 2 ways to install "get_youtube_thumbnail". First way is simply to download ready build for your OS and the second way if you have installed golang on your system use "go get" then make build from source 
+There are 2 ways to install "get-youtube-thumbnail". First way is simply to download ready build for your OS and the second way if you have installed golang on your system use "go get" then make build from source 
 
 - Download ready binary for your OS:
 
@@ -23,7 +23,7 @@ There are 2 ways to install "get_youtube_thumbnail". First way is simply to down
 
  - or use go get command:
 ```
-go get github.com\iqhater\get_youtube_thumbnail
+go get github.com\iqhater\get-youtube-thumbnail
 ```
 then build your source
 ```
@@ -33,19 +33,19 @@ go build
 
 ## How to Use
 
-1. Run binary file in console. (for linux and darwin os). For windows run `get_youtube_thumbnail.exe`
+1. Run binary file in console. (for linux and darwin os). For windows run `get-youtube-thumbnail.exe`
 ```
-./get_youtube_thumbnail
+./get-youtube-thumbnail
 ```
 2. Paste youtube url link
 ```
-$ ./get_youtube_thumbnail
+$ ./get-youtube-thumbnail
 
 Enter Youtube Url: https://www.youtube.com/watch?v=glHtYwHidUY
 ```
 3. Profit;) Your image saved in created "thumbnails" directory
 ```
-$ ./get_youtube_thumbnail
+$ ./get-youtube-thumbnail
 
 Enter Youtube Url: https://www.youtube.com/watch?v=glHtYwHidUY
 

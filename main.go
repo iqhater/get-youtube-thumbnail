@@ -1,14 +1,8 @@
-// Compile binary for Raspberry Pi (linux)
-// env GOOS=linux GOARCH=arm go build
-
 // Remove Symbol and Debug info at compile
 // go build -ldflags "-s -w"
 
 // Run on linux and mac os x machines
 // sudo ./get-thumbnail-Youtube
-
-//TODO: Replace all links to valid in README
-//TODO: Check comments
 
 package main
 
@@ -64,7 +58,7 @@ func main() {
 
 // getUrlResponse get and check image url with two resolutions.
 // If "/maxresdefault.jpg" have a bad response or doesn't exist
-// we're try to get url with lowest or only resolution "/hqdefault.jpg".
+// getURLResponse try to get url with lowest or only resolution "/hqdefault.jpg".
 func (t *Thumbnail) getURLResponse() *http.Response {
 
 	// two possible resolutions

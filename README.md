@@ -10,8 +10,6 @@
 </div>
 <hr> -->
 
-"get_youtube_thumbnail" is a small tool for extract thumbnails images from youtube videos. 
-
 By default, get_youtube_thumbnail gets a max resolution image, if image has been not found, get_youtube_thumbnail try to getting a high resolution image.
 
 

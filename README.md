@@ -18,7 +18,7 @@ There are 2 ways to install "get-youtube-thumbnail". First way is simply to down
 
 - Download ready binary for your OS:
 
-     [Latest Release](https://github.com/iqhater/get-youtube-thumbnail/releases/tag/v1.0.0)
+     [Latest Release](https://github.com/iqhater/get-youtube-thumbnail/releases/tag/v1.0.1)
      <!-- https://github.com/goreleaser/goreleaser/releases/tag/v0.45.1 -->
 
  - or use go get command:

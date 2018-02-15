@@ -39,11 +39,16 @@ func main() {
 
 	const thumbnailsDir = "./thumbnails"
 
+	err := createFolder(thumbnailsDir)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
 	// tree walks thumbnails directory
 	filepath.Walk(thumbnailsDir, t.walkFunc)
 
 	thumbnailsName := "thumbnails/thumbnail_" + setNameDigit(t.fileName) + ".jpg"
-	readyFile, errCreate := t.createFile(thumbnailsDir, thumbnailsName)
+	readyFile, errCreate := t.createFile(thumbnailsName)
 	if errCreate != nil {
 		log.Println(errCreate)
 	}
@@ -82,15 +87,24 @@ func (t *Thumbnail) getURLResponse() *http.Response {
 	return resp
 }
 
-// createFile create and save jpg thumbnail file.
-// Default folder for file is "thumbnails" at the root directory.
-func (t *Thumbnail) createFile(thumbnailsDir, thumbnailsName string) (*os.File, error) {
-
+func createFolder(thumbnailsDir string) error {
 	// create folder if already exist do nothing
 	err := os.MkdirAll(thumbnailsDir, os.ModePerm)
 	if err != nil {
-		return nil, errors.New("Can't create thumbnails folder")
+		return errors.New("Can't create thumbnails folder")
 	}
+	return nil
+}
+
+// createFile create and save jpg thumbnail file.
+// Default folder for file is "thumbnails" at the root directory.
+func (t *Thumbnail) createFile(thumbnailsName string) (*os.File, error) {
+
+	// create folder if already exist do nothing
+	/* err := os.MkdirAll(thumbnailsDir, os.ModePerm)
+	if err != nil {
+		return nil, errors.New("Can't create thumbnails folder")
+	} */
 
 	// create file with auto set in the name's last number
 	createdFile, err := os.Create(thumbnailsName)

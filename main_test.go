@@ -16,9 +16,10 @@ func TestCreateFile(t *testing.T) {
 	tmb := &Thumbnail{}
 
 	thumbnailsDir := "./test_data"
+	createFolder(thumbnailsDir)
 	thumbnailsName := "test_data/thumbnail_" + setNameDigit(tmb.fileName) + ".jpg"
 
-	file, err := tmb.createFile(thumbnailsDir, thumbnailsName)
+	file, err := tmb.createFile(thumbnailsName)
 	file.Close()
 	defer os.Remove("./" + thumbnailsName)
 
@@ -27,9 +28,9 @@ func TestCreateFile(t *testing.T) {
 	}
 }
 
-func TestCreateFileWrongDirectory(t *testing.T) {
+func TestCreateWrongDirectory(t *testing.T) {
 
-	tmb := &Thumbnail{}
+	// tmb := &Thumbnail{}
 	var thumbnailsDir string
 
 	osName := runtime.GOOS
@@ -40,12 +41,17 @@ func TestCreateFileWrongDirectory(t *testing.T) {
 		thumbnailsDir = ""
 	}
 
-	file, _ := tmb.createFile(thumbnailsDir, "thumbnail_")
-	file.Close()
-
-	if file != nil {
+	err := createFolder(thumbnailsDir)
+	if err == nil {
 		t.Error("Expected nil return!")
 	}
+	/*
+		file, _ := tmb.createFile("thumbnail_")
+		file.Close()
+
+		if file != nil {
+			t.Error("Expected nil return!")
+		} */
 }
 
 func TestCreateFileWrong(t *testing.T) {
@@ -53,6 +59,7 @@ func TestCreateFileWrong(t *testing.T) {
 	tmb := &Thumbnail{}
 
 	var thumbnailsDir = "./test_data"
+	createFolder(thumbnailsDir)
 	var thumbnailsName string
 	osName := runtime.GOOS
 
@@ -62,7 +69,7 @@ func TestCreateFileWrong(t *testing.T) {
 		thumbnailsName = "/"
 	}
 
-	file, err := tmb.createFile(thumbnailsDir, thumbnailsName)
+	file, err := tmb.createFile(thumbnailsName)
 	file.Close()
 	defer os.Remove("./" + thumbnailsName)
 

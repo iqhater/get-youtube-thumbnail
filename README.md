@@ -3,9 +3,13 @@
 <div align="center">
 <a href="https://github.com/iqhater/get-youtube-thumbnail/releases/tag/v1.0.1">
 <img src="https://img.shields.io/badge/Latest%20Release-v1.0.1-73C0E7.svg?style=flat-square" alt="latest-release"></a>
-<a href='https://semaphoreci.com/iqhater/get-youtube-thumbnail'> <img src='https://semaphoreci.com/api/v1/iqhater/get-youtube-thumbnail/branches/master/badge.svg' alt='Build Status'></a>
-<!-- <a href="https://codecov.io/">
-<img src="https://img.shields.io/scrutinizer/coverage/g/filp/whoops.svg?style=flat-square" alt="code-coverage"></a> -->
+<a href='https://semaphoreci.com/iqhater/get-youtube-thumbnail'> <img src='https://semaphoreci.com/api/v1/iqhater/get-youtube-thumbnail/branches/master/badge.svg' alt="Build Status"></a>
+<a href="https://codecov.io/gh/iqhater/get-youtube-thumbnail">
+  <img src="https://codecov.io/gh/iqhater/get-youtube-thumbnail/branch/develop/graph/badge.svg" alt="code-coverage">
+</a>
+<a href="https://goreportcard.com/report/github.com/iqhater/get-youtube-thumbnail">
+  <img src="https://goreportcard.com/badge/github.com/iqhater/get-youtube-thumbnail?style=flat-square" alt="go-report-card">
+</a>
 </div>
 <hr>
 

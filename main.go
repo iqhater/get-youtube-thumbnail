@@ -88,6 +88,7 @@ func (t *Thumbnail) getURLResponse() *http.Response {
 }
 
 func createFolder(thumbnailsDir string) error {
+	
 	// create folder if already exist do nothing
 	err := os.MkdirAll(thumbnailsDir, os.ModePerm)
 	if err != nil {
@@ -99,12 +100,6 @@ func createFolder(thumbnailsDir string) error {
 // createFile create and save jpg thumbnail file.
 // Default folder for file is "thumbnails" at the root directory.
 func (t *Thumbnail) createFile(thumbnailsName string) (*os.File, error) {
-
-	// create folder if already exist do nothing
-	/* err := os.MkdirAll(thumbnailsDir, os.ModePerm)
-	if err != nil {
-		return nil, errors.New("Can't create thumbnails folder")
-	} */
 
 	// create file with auto set in the name's last number
 	createdFile, err := os.Create(thumbnailsName)

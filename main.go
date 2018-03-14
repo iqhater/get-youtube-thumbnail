@@ -35,30 +35,26 @@ func main() {
 
 	t.findVideoID(t.link)
 
-	resp := t.getURLResponse()
-
 	const thumbnailsDir = "./thumbnails"
 
 	err := createFolder(thumbnailsDir)
-	if err != nil {
-		log.Fatalln(err)
-	}
+	checkErr(err)
 
 	// tree walks thumbnails directory
 	filepath.Walk(thumbnailsDir, t.walkFunc)
 
 	thumbnailsName := "thumbnails/thumbnail_" + setNameDigit(t.fileName) + ".jpg"
 	readyFile, errCreate := t.createFile(thumbnailsName)
-	if errCreate != nil {
-		log.Println(errCreate)
-	}
+	checkErr(errCreate)
 
-	errWrite := writeFile(readyFile, resp)
-	if errWrite != nil {
-		log.Panicln(errWrite)
-	}
+	errWrite := writeFile(readyFile, t.getURLResponse())
+	checkErr(errWrite)
+}
 
-	fmt.Println("\nAlready Done:)")
+func checkErr(err error) {
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // getUrlResponse get and check image url with two resolutions.
@@ -88,7 +84,7 @@ func (t *Thumbnail) getURLResponse() *http.Response {
 }
 
 func createFolder(thumbnailsDir string) error {
-	
+
 	// create folder if already exist do nothing
 	err := os.MkdirAll(thumbnailsDir, os.ModePerm)
 	if err != nil {
@@ -122,6 +118,7 @@ func writeFile(readyFile *os.File, resp *http.Response) error {
 	}
 	resp.Body.Close()
 	readyFile.Close()
+	fmt.Println("\nAlready Done:)")
 	return nil
 }
 

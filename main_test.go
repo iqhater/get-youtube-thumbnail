@@ -30,7 +30,6 @@ func TestCreateFile(t *testing.T) {
 
 func TestCreateWrongDirectory(t *testing.T) {
 
-	// tmb := &Thumbnail{}
 	var thumbnailsDir string
 
 	osName := runtime.GOOS
@@ -45,13 +44,6 @@ func TestCreateWrongDirectory(t *testing.T) {
 	if err == nil {
 		t.Error("Expected nil return!")
 	}
-	/*
-		file, _ := tmb.createFile("thumbnail_")
-		file.Close()
-
-		if file != nil {
-			t.Error("Expected nil return!")
-		} */
 }
 
 func TestCreateFileWrong(t *testing.T) {
@@ -181,7 +173,7 @@ func TestWalkFunc(t *testing.T) {
 
 func TestGetURLResponse(t *testing.T) {
 
-	idList := []string{"N2wJQSBx5i4", "65AB2pMCj4I", "ZnhquCll3uQ"}
+	idList := []string{"l7xtyI2_MAQ", "65AB2pMCj4I", "ZnhquCll3uQ"}
 
 	tmb := &Thumbnail{}
 

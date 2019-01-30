@@ -33,15 +33,17 @@ func main() {
 	fmt.Printf("\nEnter Youtube Url: ")
 	fmt.Scanf("%s ", &t.link)
 
-	t.findVideoID(t.link)
+	err := t.findVideoID(t.link)
+	checkErr(err)
 
 	const thumbnailsDir = "./thumbnails"
 
-	err := createFolder(thumbnailsDir)
+	err = createFolder(thumbnailsDir)
 	checkErr(err)
 
 	// tree walks thumbnails directory
-	filepath.Walk(thumbnailsDir, t.walkFunc)
+	err = filepath.Walk(thumbnailsDir, t.walkFunc)
+	checkErr(err)
 
 	thumbnailsName := "thumbnails/thumbnail_" + setNameDigit(t.fileName) + ".jpg"
 	readyFile, errCreate := t.createFile(thumbnailsName)

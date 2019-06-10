@@ -1,100 +1,10 @@
-// Run Benchmarks go test -run=XXX -bench=. -benchmem
-
 package main
 
 import (
 	"fmt"
-	"net/http"
-	"os"
 	"path/filepath"
-	"runtime"
 	"testing"
 )
-
-func TestCreateFile(t *testing.T) {
-
-	tmb := &Thumbnail{}
-
-	thumbnailsDir := "./test_data"
-	createFolder(thumbnailsDir)
-	thumbnailsName := "test_data/thumbnail_" + setNameDigit(tmb.fileName) + ".jpg"
-
-	file, err := tmb.createFile(thumbnailsName)
-	file.Close()
-	defer os.Remove("./" + thumbnailsName)
-
-	if err != nil {
-		t.Error("Wrong created file!")
-	}
-}
-
-func TestCreateWrongDirectory(t *testing.T) {
-
-	var thumbnailsDir string
-
-	osName := runtime.GOOS
-
-	if osName == "windows" {
-		thumbnailsDir = "/<"
-	} else if osName == "linux" {
-		thumbnailsDir = ""
-	}
-
-	err := createFolder(thumbnailsDir)
-	if err == nil {
-		t.Error("Expected nil return!")
-	}
-}
-
-func TestCreateFileWrong(t *testing.T) {
-
-	tmb := &Thumbnail{}
-
-	var thumbnailsDir = "./test_data"
-	createFolder(thumbnailsDir)
-	var thumbnailsName string
-	osName := runtime.GOOS
-
-	if osName == "windows" {
-		thumbnailsName = "test_data/<"
-	} else if osName == "linux" {
-		thumbnailsName = "/"
-	}
-
-	file, err := tmb.createFile(thumbnailsName)
-	file.Close()
-	defer os.Remove("./" + thumbnailsName)
-
-	if err == nil {
-		t.Error("incorrect file name. Must be nil return!")
-	}
-}
-
-func TestWriteFile(t *testing.T) {
-
-	file, _ := os.Create("./test_data/thumbnail_test2.jpg")
-	defer file.Close()
-	defer os.Remove("./test_data/thumbnail_test2.jpg")
-
-	resp, err := http.Get("https://www.youtube.com/watch?v=N2wJQSBx5i4")
-
-	if writeFile(file, resp) != nil {
-
-		t.Errorf("Write file failed %v\n", err)
-	}
-	resp.Body.Close()
-}
-
-func TestWriteFileWrong(t *testing.T) {
-
-	resp, _ := http.Get("https://www.youtube.com/watch?v=N2wJQSBx5i4")
-	err := writeFile(nil, resp)
-
-	if err == nil {
-		t.Errorf("Write file failed %v\n", err)
-	}
-	resp.Body.Close()
-}
 
 func TestFindVideoID(t *testing.T) {
 
@@ -171,34 +81,6 @@ func TestWalkFunc(t *testing.T) {
 	}
 }
 
-func TestGetURLResponse(t *testing.T) {
-
-	idList := []string{"l7xtyI2_MAQ", "65AB2pMCj4I", "ZnhquCll3uQ"}
-
-	tmb := &Thumbnail{}
-
-	for _, id := range idList {
-		tmb.VideoID = id
-		if tmb.getURLResponse() == nil {
-			t.Error("Must be non nil return!")
-		}
-	}
-}
-
-func TestGetWrongURLResponse(t *testing.T) {
-
-	idList := []string{"N2wdg7Kad5F", "65ADa3Lsd9Q", "ZnhqWQ42I6w"}
-
-	tmb := &Thumbnail{}
-
-	for _, id := range idList {
-		tmb.VideoID = id
-		if tmb.getURLResponse() != nil {
-			t.Error("Must be nil return!")
-		}
-	}
-}
-
 func TestSetNameDigit(t *testing.T) {
 
 	namesList := []string{"thumbnail_0.jpg", "thumbnail_1.jpg", "thumbnail_2.jpg", "thumbnail_3.jpg", "thumbnail_4.jpg"}
@@ -226,5 +108,33 @@ func TestSetNameDigitWrongNumbers(t *testing.T) {
 
 	if out != "" {
 		t.Errorf("Wrong number symbols! %v", out)
+	}
+}
+
+func TestSetThumbnailNameVaild(t *testing.T) {
+
+	tmb := NewThumbnail()
+
+	result := tmb.setThumbnailName()
+
+	if len(result) == 0 {
+		t.Errorf("Empty file name! %s\n", result)
+	}
+}
+
+func TestNewThumbnailVaild(t *testing.T) {
+
+	videoID := ""
+	link := ""
+	thumbnailsName := ""
+
+	result := NewThumbnail()
+
+	if result == nil {
+		t.Errorf("Should be non nil struct! %v\n", result)
+	}
+
+	if result.VideoID != videoID || result.link != link || result.fileName == nil || result.thumbnailsDir == "" || result.thumbnailsName != thumbnailsName {
+		t.Errorf("Should be valid struct! %v\n", result)
 	}
 }

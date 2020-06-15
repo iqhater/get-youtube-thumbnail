@@ -9,7 +9,8 @@ import (
 	"strings"
 )
 
-// Thumbnail struct has a three properties whose get the correct url and current file names.
+// Thumbnail struct has a three properties
+// whose get the correct url and current file names.
 type Thumbnail struct {
 	VideoID        string
 	link           string
@@ -18,8 +19,9 @@ type Thumbnail struct {
 	thumbnailsName string
 }
 
-// findVideoID extract video id from raw input url and save it at Thumbnail struct.
-// Also checks id length and bad symbols at id sequence.
+// findVideoID extract video id from raw input url
+// and save it at Thumbnail struct. Also checks id length
+// and bad symbols at id sequence.
 func (t *Thumbnail) findVideoID(urlVideo string) error {
 
 	equalIndex := strings.Index(urlVideo, "=")

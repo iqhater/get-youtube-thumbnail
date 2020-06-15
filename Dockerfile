@@ -12,16 +12,19 @@
 
 
 #name of base image
-FROM golang:alpine
+FROM golang:1.14
+
+#need to enable to run tests!
+ENV CGO_ENABLED=1
 
 #create a folder where our program will be located
-RUN mkdir -p /go/src/get-youtube-thumbnail
+RUN mkdir -p /go/src/github.com/iqhater/get-youtube-thumbnail
 
 #set a working directory with a created folder
-WORKDIR /go/src/get-youtube-thumbnail
+WORKDIR /go/src/github.com/iqhater/get-youtube-thumbnail
 
 #Copy all files from source to the Docker's path in the image's filesystem
-COPY . /go/src/get-youtube-thumbnail
+COPY . /go/src/github.com/iqhater/get-youtube-thumbnail
 
 #run test with coverage and goes to test_data folder. Must be empty 
-CMD go test -v -cover ./ && cd test_data && ls -la
+CMD go test -race -v -cover ./...

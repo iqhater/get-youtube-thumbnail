@@ -9,6 +9,9 @@ import (
 	"os"
 )
 
+// createFolder function is create a thumbnails folder
+// with a given name as parametr
+// Folder will be stored all thumbnails
 func createFolder(thumbnailsDir string) error {
 
 	// create folder if already exist do nothing
@@ -25,7 +28,6 @@ func createFile(thumbnailsName string) (*os.File, error) {
 
 	// create file with auto set in the name's last number
 	createdFile, err := os.Create(thumbnailsName)
-
 	if err != nil {
 		log.Println(err)
 		return nil, errors.New("Can't create file")
@@ -34,7 +36,8 @@ func createFile(thumbnailsName string) (*os.File, error) {
 	return createdFile, nil
 }
 
-// writeFile write response body from valid url at the created jpg thumbnail file.
+// writeFile write response body from valid url
+// at the created jpg thumbnail file.
 func writeFile(readyFile *os.File, resp *http.Response) error {
 
 	_, err := io.Copy(readyFile, resp.Body)

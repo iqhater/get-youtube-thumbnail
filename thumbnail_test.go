@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"os"
 	"path/filepath"
 	"testing"
 )
@@ -73,9 +75,8 @@ func TestFindVideoWrongIDLength(t *testing.T) {
 func TestWalkFunc(t *testing.T) {
 
 	tmb := new(Thumbnail)
-	thumbnailsDir := "./test_data"
 
-	err := filepath.Walk(thumbnailsDir, tmb.walkFunc)
+	err := filepath.Walk(TestDir, tmb.walkFunc)
 	if err != nil {
 		t.Error("Walk Func Test Failed. Must retrun nil!")
 	}
@@ -136,5 +137,15 @@ func TestNewThumbnailVaild(t *testing.T) {
 
 	if result.VideoID != videoID || result.link != link || result.fileName == nil || result.thumbnailsDir == "" || result.thumbnailsName != thumbnailsName {
 		t.Errorf("Should be valid struct! %v\n", result)
+	}
+	removeTestDir(TestDir)
+}
+
+// remove test 'test_data' directory
+// after passing all tests
+func removeTestDir(dir string) {
+	err := os.RemoveAll(dir)
+	if err != nil {
+		log.Println(err)
 	}
 }

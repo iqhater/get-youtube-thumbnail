@@ -2,9 +2,9 @@ name: CI Job
 on: [push]
 
 jobs:
-  app_job:
+  run_tests:
     runs-on: ubuntu-latest
-    name: A job to run docker container
+    name: A job to run in docker container
     steps:
       - name: Run action step
-        uses: actions/get-youtube-thumbnail@v1
+        uses: actions/checkout@v2

@@ -28,3 +28,9 @@ COPY . /go/src/github.com/iqhater/get-youtube-thumbnail
 
 #run test with coverage and goes to test_data folder. Must be empty 
 CMD go test -race -v -cover ./...
+
+# Compile the action
+RUN go build -o /bin/get-youtube-thumbnail
+
+# Specify the container's entrypoint as the action
+ENTRYPOINT ["/bin/get-youtube-thumbnail"]

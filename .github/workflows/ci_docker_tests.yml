@@ -1,0 +1,7 @@
+name: CI Tests in Docker
+on: [push]
+
+runs:
+  using: docker
+  uses: actions/checkout@v2
+  image: Dockerfile

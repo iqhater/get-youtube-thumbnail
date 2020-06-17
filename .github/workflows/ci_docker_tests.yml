@@ -1,7 +1,10 @@
-name: CI Tests in Docker
+name: CI Job
 on: [push]
 
-runs:
-  using: docker
-  uses: actions/checkout@v2
-  image: Dockerfile
+jobs:
+  app_job:
+    runs-on: ubuntu-latest
+    name: A job to run docker container
+    steps:
+      - name: Run action step
+        uses: actions/get-youtube-thumbnail@v1

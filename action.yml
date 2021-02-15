@@ -1,0 +1,5 @@
+name: CI Tests in Docker
+
+runs:
+  using: docker
+  image: Dockerfile

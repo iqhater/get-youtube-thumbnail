@@ -1,0 +1,10 @@
+name: CI Job
+on: [push]
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    name: A job to run in docker container
+    steps:
+      - name: Run action step
+        uses: actions/checkout@v2
